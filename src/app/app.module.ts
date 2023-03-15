@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { LoginInterceptorService } from './login/login-interceptor.service';
 
 
 @NgModule({
@@ -32,7 +33,13 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoginInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

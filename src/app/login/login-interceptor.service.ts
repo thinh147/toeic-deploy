@@ -12,7 +12,6 @@ import { LoginService } from './login.service';
 @Injectable({ providedIn: 'root' })
 export class LoginInterceptorService implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
-
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         return this.loginService.user.pipe(
             take(1),

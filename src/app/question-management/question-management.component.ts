@@ -16,7 +16,7 @@ export class QuestionManagementComponent {
     pageSize: 10 as number,// mặc định số lượng bản ghi 1 trang 
     numFound: null as number, // Số lượng bản ghi có trong db
   };
-
+  typeSave: string;
   formCreate = new FormGroup({
     id: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
@@ -92,9 +92,15 @@ export class QuestionManagementComponent {
     })
   }
 
-  openModalCreate() {
+  openModalCreate(type, queston: QuestionModel) {
+    this.formCreate.reset();
+    this.typeSave = type;
+    if (type === 'edit') {
+      this.formCreate.patchValue(queston);
+    }
     this.modalService.open(this.modalCreate, { 'size': 'lg', backdrop: 'static' })
   }
+
 
   onChangePage(currentPage: number, pageSize: number) {
     this.currentSearchParam.currentPage = currentPage;
@@ -102,12 +108,18 @@ export class QuestionManagementComponent {
   }
 
   onSubmit() {
-    // this.questionManagementService.requestSave(this.formCreate.getRawValue())
-    console.log(this.formCreate.get('id').valid)
+    this.questionManagementService.requestSave(this.formCreate.getRawValue(), this.typeSave).subscribe({
+      next: value => {
+        this.onSearch(1, 10);
+        this.modalService.dismissAll();
+      }, error: error => {
+        alert('Tạo thất bại')
+      }
+    })
   }
 }
 export class QuestionModel {
-  id: number;
+  id: string;
   type: string;
   detail: string;
   mediaPath: string;
