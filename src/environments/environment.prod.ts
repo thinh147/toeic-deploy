@@ -4,7 +4,7 @@ export const environment = {
   timeBeforAutoReload: 2000,
   autoReloadInterval: 30000,
   production: true
-  , baseURL: 'http://localhost:8080/api'
+  , baseURL: 'https://toeic.gogitek.online/api'
   , swal: {
     delete: <SweetAlertOptions>{
       title: 'Are you sure?',
