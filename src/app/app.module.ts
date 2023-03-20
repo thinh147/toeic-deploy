@@ -13,6 +13,8 @@ import { QuestionManagementComponent } from './question-management/question-mana
 import { UserManagementComponent } from './user-management/user-management.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LoginInterceptorService } from './login/login-interceptor.service';
+import { ExamComponent } from './exam/exam.component';
+import { VocabularyComponent } from './vocabulary/vocabulary.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { LoginInterceptorService } from './login/login-interceptor.service';
     NavbarComponent,
     QuestionManagementComponent,
     UserManagementComponent,
+    ExamComponent,
+    VocabularyComponent,
   ],
   imports: [
     CommonModule,

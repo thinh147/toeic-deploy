@@ -4,9 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { LoginGuardService } from './share/login-guard.service';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { ExamComponent } from './exam/exam.component';
+import { VocabularyComponent } from './vocabulary/vocabulary.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'question', pathMatch: 'full' },
+  { path: '', redirectTo: 'vocabulary', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'question',
@@ -17,11 +19,21 @@ const routes: Routes = [
     path: 'user',
     component: UserManagementComponent,
     canActivate: [LoginGuardService]
+  },
+  {
+    path: 'exam',
+    component: ExamComponent,
+    canActivate: [LoginGuardService]
+  },
+  {
+    path: 'vocabulary',
+    component: VocabularyComponent,
+    canActivate: [LoginGuardService]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

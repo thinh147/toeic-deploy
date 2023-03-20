@@ -29,8 +29,6 @@ export class UserManagementService {
     const url = new URL(this.baseURL + '/admin/questions/' + type);
     let data;
     type === 'create' ? data = [question] : data = question;
-
-
     return this.http.post<UserModel>(url.href, data);
   }
 }
