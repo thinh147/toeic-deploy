@@ -23,6 +23,9 @@ export class NavbarComponent {
       .subscribe((event: NavigationEnd) => {
         if (event.urlAfterRedirects.indexOf('question') > 0) this.sidebarState = 'question';
         if (event.urlAfterRedirects.indexOf('user') > 0) this.sidebarState = 'user';
+        if (event.urlAfterRedirects.indexOf('payment') > 0) this.sidebarState = 'payment';
+        if (event.urlAfterRedirects.indexOf('exam') > 0) this.sidebarState = 'exam';
+        if (event.urlAfterRedirects.indexOf('vocabulary') > 0) this.sidebarState = 'vocabulary';
       });
 
     this.loginService.user.subscribe({

@@ -29,44 +29,6 @@ export class UserManagementComponent {
     part: new FormControl('', Validators.required),
   })
 
-  selectGroup: any[] = [];
-  groups = [
-    {
-      code: 'P1'
-    },
-    {
-      code: 'P2'
-    },
-    {
-      code: 'P3'
-    },
-    {
-      code: 'P4'
-    },
-    {
-      code: 'P5'
-    },
-    {
-      code: 'P6'
-    },
-    {
-      code: 'P7'
-    }
-  ]
-  settings = {
-    singleSelection: false,
-    idField: 'code',
-    textField: 'code',
-    enableCheckAll: true,
-    selectAllText: 'Chọn tất cả',
-    unSelectAllText: 'Bỏ chọn tất cả',
-    allowSearchFilter: true,
-    maxHeight: 300,
-    searchPlaceholderText: 'Tìm kiếm',
-    noDataAvailablePlaceholderText: 'Không có dữ liệu',
-    placeholder: false
-  };
-
   @ViewChild("formFilter") formFilter: NgForm;
   @ViewChild('modalCreate', { static: true }) modalCreate: ElementRef;
 
@@ -81,7 +43,7 @@ export class UserManagementComponent {
     this.onSearch(1, 10);
   }
   onSearch(currentPage: number, pageSize: number) {
-    this.userManagementService.searchUser(currentPage, pageSize, this.selectGroup).subscribe({
+    this.userManagementService.searchUser(currentPage, pageSize, this.formFilter?.value?.name).subscribe({
       next: data => {
         this.users = data.details.records;
         this.currentSearchParam.numFound = data.details.totalRecords;
@@ -92,12 +54,12 @@ export class UserManagementComponent {
   }
 
   openModalCreate(type, queston: UserModel) {
-    this.formCreate.reset();
-    this.typeSave = type;
-    if (type === 'edit') {
-      this.formCreate.patchValue(queston);
-    }
-    this.modalService.open(this.modalCreate, { 'size': 'lg', backdrop: 'static' })
+    // this.formCreate.reset();
+    // this.typeSave = type;
+    // if (type === 'edit') {
+    //   this.formCreate.patchValue(queston);
+    // }
+    // this.modalService.open(this.modalCreate, { 'size': 'lg', backdrop: 'static' })
   }
 
 
@@ -118,16 +80,10 @@ export class UserManagementComponent {
   }
 }
 export class UserModel {
-  id: string;
-  type: string;
-  detail: string;
-  mediaPath: string;
-  choiceA: string;
-  choiceB: string;
-  choiceC: string;
-  choiceD: string;
-  trueAnswer: string;
-  part: string;
+  id: number;
+  fullName: string;
+  level: string;
+  phoneNumber: number;
 }
 export class ResponseAPI<T> {
   code: number;

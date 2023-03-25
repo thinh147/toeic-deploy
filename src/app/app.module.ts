@@ -15,6 +15,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LoginInterceptorService } from './login/login-interceptor.service';
 import { ExamComponent } from './exam/exam.component';
 import { VocabularyComponent } from './vocabulary/vocabulary.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { VocabularyComponent } from './vocabulary/vocabulary.component';
     UserManagementComponent,
     ExamComponent,
     VocabularyComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

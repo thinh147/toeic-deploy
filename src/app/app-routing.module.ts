@@ -6,6 +6,7 @@ import { QuestionManagementComponent } from './question-management/question-mana
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ExamComponent } from './exam/exam.component';
 import { VocabularyComponent } from './vocabulary/vocabulary.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'vocabulary', pathMatch: 'full' },
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'question',
     component: QuestionManagementComponent,
+    canActivate: [LoginGuardService]
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
     canActivate: [LoginGuardService]
   },
   {

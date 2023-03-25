@@ -13,15 +13,12 @@ export class UserManagementService {
     this.baseURL = environment.baseURL;
   }
 
-  searchUser(currentPage: number, pageSize: number, selectGroup: any[]) {
-    //tham số tìm kiếm null là tìm tất cả 
-    const url = new URL(this.baseURL + '/admin/questions');
+  searchUser(currentPage: number, pageSize: number, name: string) {
+    //tham số tìm kiếm null là tìm tất cả /api/admin/user-lists
+    const url = new URL(this.baseURL + '/admin/user-lists');
     url.searchParams.set('page', (currentPage - 1).toString());
     url.searchParams.set('size', pageSize.toString());
-    // url.searchParams.set('parts', 'P1');
-    selectGroup.map(value => value.code).join(',') && selectGroup.map(value => value.code).join(',').length > 0 ? url.searchParams.set('parts', selectGroup.map(value => value.code).join(',')) : null;
-
-    // lấy thông tin ở form để thực hiện request search
+    name && name.length>0 ? url.searchParams.set('name', name): null;
     return this.http.get<ResponseAPI<UserModel[]>>(url.href);
   }
 

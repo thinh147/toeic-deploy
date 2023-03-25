@@ -3,13 +3,10 @@
         <!-- filter -->
         <div class="m-4 ms-5 me-5">
             <div (keydown.enter)="onSearch(1, currentSearchParam.pageSize)">
-                <div class="mb-3 d-flex">
+                <form #formFilter="ngForm" class="mb-3 d-flex">
                     <div class="d-flex align-items-center " style="min-width: 15rem;">
-                        <label for="id" class="text-nowrap me-1">Id: </label>
-                        <ng-multiselect-dropdown style="font-size: 0.875rem;" class="w-100" #multiSelect
-                            [settings]="settings" [data]="groups" [(ngModel)]="selectGroup">
-                        </ng-multiselect-dropdown>
-                        <!-- <input class="form-control form-control-sm" ngModel name="id"> -->
+                        <label for="id" class="text-nowrap me-1">Name: </label>
+                        <input class="form-control form-control-sm" ngModel name="name">
                     </div>
                     <div class="ms-auto  d-flex align-items-center justify-content-end">
                         <button class="me-auto d-flex" type="button" class="btn btn-sm shadow-none btn-primary"
@@ -17,13 +14,13 @@
                             Search
                         </button>
                         <div>
-                            <button type="button" class="btn btn-sm shadow-none btn-secondary m-1"
+                            <!-- <button type="button" class="btn btn-sm shadow-none btn-secondary m-1"
                                 (click)="openModalCreate('create',null)">
-                                New Question
-                            </button>
+                                New User
+                            </button> -->
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -33,35 +30,17 @@
                 <thead class="table-light fw-light">
                     <tr fw-light>
                         <th class="fw-light">Id</th>
-                        <th class="fw-light">Type</th>
-                        <th class="fw-light">detail</th>
-                        <th class="fw-light">mediaPath</th>
-                        <th class="fw-light">choiceA</th>
-                        <th class="fw-light">choiceB</th>
-                        <th class="fw-light">choiceC</th>
-                        <th class="fw-light">choiceD</th>
-                        <th class="fw-light">trueAnswer</th>
-                        <th class="fw-light">part</th>
-                        <th class="fw-light">Actions</th>
+                        <th class="fw-light">fullName</th>
+                        <th class="fw-light">level</th>
+                        <th class="fw-light">phoneNumber</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="tbody" *ngFor="let user of users">
-                        <!-- <td>{{user.id}}</td>
-                        <td>{{user.type}}</td>
-                        <td>{{user.detail}}</td>
-                        <td>{{user.mediaPath}}</td>
-                        <td>{{user.choiceA}}</td>
-                        <td>{{user.choiceB}}</td>
-                        <td>{{user.choiceC}}</td>
-                        <td>{{user.choiceD}}</td>
-                        <td>{{user.trueAnswer}}</td>
-                        <td>{{user.part}}</td> -->
-                        <td>
-                            <button class="btn shadow-none btn-sm" (click)="openModalCreate('edit', user)">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                        </td>
+                        <td>{{user.id}}</td>
+                        <td>{{user.fullName}}</td>
+                        <td>{{user.level}}</td>
+                        <td>{{user.phoneNumber}}</td>
                     </tr>
                 </tbody>
             </table>
